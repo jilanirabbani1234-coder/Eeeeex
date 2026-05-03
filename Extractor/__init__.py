@@ -57,5 +57,5 @@ async def info_bot():
         sys.exit(1)
 
 # Run the bot
-loop.run_until_complete(info_bot())
+#loop.run_until_complete(info_bot())
 
