@@ -32,7 +32,9 @@ async def without_login(bot, user_id, m, all_urls, start_time, bname, batch_id, 
     if await db.db_instance.get_user_types(user_id) == 'P':
         await db.db_instance.increment_daily_usage(user_id)
     os.remove(file_path)
-    os.remove(file_name_enc)
+    # ya to file banao ya remove line hata do
+    if os.path.exists(file_name_enc):
+        os.remove(file_name_enc)
 
 
 async def file_name_encr(all_urls, file_name_enc):
@@ -122,7 +124,9 @@ async def login_free(app, user_id, m, all_urls, start_time, bname, batch_id, app
     
     
     os.remove(file_path)
-    os.remove(file_name_enc)
+    # ya to file banao ya remove line hata do
+    if os.path.exists(file_name_enc):
+        os.remove(file_name_enc)
 
 
 
@@ -134,10 +138,17 @@ async def extract_urls(file, file_path, all_urls):
         content = await f.read()
     check = content.split("\n")
     for line in check:
-        if "master://:" in line:
-            enc_url = line.split("master://:", 1)[1].strip()
+    if "master://:" in line:
+        enc_url = line.split("master://:", 1)[1].strip()
         try:
             decrypted_url = await dec_url(enc_url)
+            decrypted_line = line.replace(enc_url, decrypted_url).replace(': master://:', '')
+            all_urls.append(decrypted_line)
+        except Exception as e:
+            all_urls.append(line)
+            LOGGER.info(f"Error decrypting URL: {e}")
+        else:
+            all_urls.append(line)  # normal line seedha add karo
             decrypted_line = line.replace(enc_url, decrypted_url).replace(': master://:', '')
             all_urls.append(decrypted_line)
         except Exception as e:
