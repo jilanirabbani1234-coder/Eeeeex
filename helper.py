@@ -4,7 +4,7 @@ import asyncio
 import os
 import requests
 import time
-#from p_bar import progress_bar
+from p_bar import progress_bar
 import aiohttp
 import tgcrypto
 import aiofiles
@@ -26,7 +26,7 @@ def exec(cmd):
         output = process.stdout.decode()
         print(output)
         return output
-        #err = process.stdout.decode()
+        err = process.stdout.decode()
 def pull_run(work, cmds):
     with concurrent.futures.ThreadPoolExecutor(max_workers=work) as executor:
         print("Waiting for tasks to complete")
@@ -91,9 +91,9 @@ def vid_info(info):
                 if "RESOLUTION" not in i[2] and i[2] not in temp and "audio" not in i[2]:
                     temp.append(i[2])
                     
-                    # temp.update(f'{i[2]}')
-                    # new_info.append((i[2], i[0]))
-                    #  mp4,mkv etc ==== f"({i[1]})" 
+                    temp.update(f'{i[2]}')
+                    new_info.append((i[2], i[0]))
+                    mp4,mkv etc ==== f"({i[1]})" 
                     
                     new_info.update({f'{i[2]}':f'{i[0]}'})
 
