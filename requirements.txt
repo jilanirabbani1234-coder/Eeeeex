@@ -18,3 +18,4 @@ gunicorn
 apscheduler
 brotli
 dotenv
+pyromod==2.1.2
