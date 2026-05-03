@@ -1,7 +1,7 @@
 import os
 from flask import Flask
 from threading import Thread
-from pyrogram import Client
+from pyrogram import Client, idle
 import asyncio
 from cleanup import start_cleanup_scheduler
 
@@ -45,12 +45,13 @@ async def main():
     try:
         await bot.start()
         print("Bot is running...")
-        await bot.idle()  # Keep the bot running
+        await idle()  # Keep the bot running
     except Exception as e:
         print(f"Error: {e}")
         await bot.stop()
         await asyncio.sleep(5)  # Wait 5 seconds before restarting
         await bot.start()
+        await idle()
 
 if __name__ == "__main__":
     bot.run(main())
