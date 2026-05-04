@@ -140,22 +140,17 @@ async def extract_urls(file, file_path, all_urls):
         content = await f.read()
     check = content.split("\n")
     for line in check:
-    if "master://:" in line:
-        enc_url = line.split("master://:", 1)[1].strip()
-        try:
-            decrypted_url = await dec_url(enc_url)
-            decrypted_line = line.replace(enc_url, decrypted_url).replace(': master://:', '')
-            all_urls.append(decrypted_line)
-        except Exception as e:
-            all_urls.append(line)
-            LOGGER.info(f"Error decrypting URL: {e}")
+        if "master://:" in line:
+            enc_url = line.split("master://:", 1)[1].strip()
+            try:
+                decrypted_url = await dec_url(enc_url)
+                decrypted_line = line.replace(enc_url, decrypted_url).replace(': master://:', '')
+                all_urls.append(decrypted_line)
+            except Exception as e:
+                all_urls.append(line)
+                LOGGER.info(f"Error decrypting URL: {e}")
         else:
-            all_urls.append(line)  # normal line seedha add karo
-            decrypted_line = line.replace(enc_url, decrypted_url).replace(': master://:', '')
-            all_urls.append(decrypted_line)
-        except Exception as e:
             all_urls.append(line)
-            LOGGER.info(f"Error decrypting URL: {e}")
 
 async def dec_url(enc_url):
     key = b'%@!@**!^*!1#$(@^'
