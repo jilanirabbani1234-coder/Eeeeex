@@ -9,7 +9,6 @@ import aiohttp
 import tgcrypto
 import aiofiles
 import concurrent.futures
-import subprocess
 from pyrogram.types import Message
 from pyrogram import Client, filters
 
