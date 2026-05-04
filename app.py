@@ -3,7 +3,7 @@ from flask import Flask
 from threading import Thread
 from pyrogram import Client
 import asyncio
-from utils.cleanup import start_cleanup_scheduler
+#from utils.cleanup import start_cleanup_scheduler
 from myutils.cleanup import start_cleanup_scheduler
 
 # Start the cleanup scheduler
