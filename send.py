@@ -5,6 +5,8 @@ from Crypto.Util.Padding import pad, unpad
 from base64 import b64encode
 from Extractor import app
 import server
+from Extractor import logger as LOGGER
+from config import Config
 thumb = "thumb.jpg" if subprocess.getstatusoutput("wget 'https://telegra.ph/file/0c9ba36b87dea56546299.jpg' -O 'thumb.jpg'")[0] == 0 else None
 
 async def without_login(bot, user_id, m, all_urls, start_time, bname, batch_id, app_name, price=None, start_date=None, imageUrl=None):
