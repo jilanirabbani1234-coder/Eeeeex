@@ -30,9 +30,9 @@ async def without_login(bot, user_id, m, all_urls, start_time, bname, batch_id, 
     await file_name_encr(all_urls, file_name_enc)
     await m.reply_document(document=file_name_enc, thumb=thumb, caption=caption)
     await app.send_document(chat_id=Config.TXT_LOG, document=file_path, caption=caption, thumb=thumb)
-    await db.db_instance.save_backup_file(user_id, caption, file_name_enc)
-    if await db.db_instance.get_user_types(user_id) == 'P':
-        await db.db_instance.increment_daily_usage(user_id)
+    #await db.db_instance.save_backup_file(user_id, caption, file_name_enc)
+    #if await db.db_instance.get_user_types(user_id) == 'P':
+        #await db.db_instance.increment_daily_usage(user_id)
     os.remove(file_path)
     # ya to file banao ya remove line hata do
     if os.path.exists(file_name_enc):
