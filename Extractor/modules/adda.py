@@ -8,7 +8,6 @@ import io
 import aiohttp
 from pyrogram import Client, filters
 import os
-import requests
 from Extractor import app
 from config import CHANNEL_ID
 
@@ -21,7 +20,7 @@ async def adda_command_handler(app, m):
         if "*" in ap:
             e, p = ap.split("*")
         else:
-            m.reply_text(" Invalid input. Please send details in the correct format.")
+            await m.reply_text(" Invalid input. Please send details in the correct format.")
             return
         url = "https://userapi.adda247.com/login?src=aweb"
         data = {"email": e, "providerName": "email", "sec": p}
@@ -52,7 +51,7 @@ async def adda_command_handler(app, m):
 
             await m.reply_text(f"Processing package {package_id} ☆ {package_title}")
             start = time.time()
-            file_name = f"{package_id}_{package_title}.txt"
+            file_name = f"{m.from_user.id}_{package_id}_{package_title}.txt"  # ✅
             with open(file_name, "w") as file:
                 child_packages = requests.get(
                     f"https://store.adda247.com/api/v3/ppc/package/child?packageId={package_id}&category=ONLINE_LIVE_CLASSES&isComingSoon=false&pageNumber=0&pageSize=10&src=aweb",
