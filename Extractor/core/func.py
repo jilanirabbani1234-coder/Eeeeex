@@ -2,7 +2,6 @@
 from config import CHANNEL_ID, SUDO_USERS
 from Extractor.core import script
 from pyrogram.types import *
-from Extractor.core.mongo.plans_db import premium_users
 
 
 async def chk_user(query, user_id):
