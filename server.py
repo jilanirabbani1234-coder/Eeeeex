@@ -1,5 +1,7 @@
 import aiohttp, cloudscraper, requests, re, asyncio, random
 from concurrent.futures import ThreadPoolExecutor
+from Extractor import logger as LOGGER
+import appx_token
 executor = ThreadPoolExecutor()
 scraper = cloudscraper.create_scraper()
 
