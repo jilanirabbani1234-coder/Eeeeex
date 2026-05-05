@@ -40,7 +40,7 @@ except AttributeError as e:
 
 # MongoDB configuration
 MONGO_URI = os.environ.get("MONGO_URI")
-DB_NAME = "Bot_user"
+DB_NAME = "extractor_db"
 COLLECTION_NAME = "credentials"
 
 try:
