@@ -10,7 +10,7 @@ from Extractor.core.mongo.usersdb import get_users, add_user, get_user
 from Extractor.core.mongo.plans_db import premium_users
 
 # Define ownerid at the module level
-ownerid = 7438818824  # Replace with your actual Telegram chat ID (integer)
+ownerid = 1717411093  # Replace with your actual Telegram chat ID (integer)
 
 # MongoDB database instance (same as implied in stats module)
 from motor.motor_asyncio import AsyncIOMotorClient
