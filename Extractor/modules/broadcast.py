@@ -1,4 +1,5 @@
 import asyncio
+import os
 from pyrogram import filters
 from pyrogram.errors import FloodWait
 from Extractor import app
@@ -6,12 +7,12 @@ from Extractor.core.mongo.usersdb import get_users
 from motor.motor_asyncio import AsyncIOMotorClient
 
 # MongoDB configuration
-MONGO_URI = ""
+MONGO_URI = os.environ.get("MONGO_URI")
 client = AsyncIOMotorClient(MONGO_URI)
 db = client['king']
 
 # Owner ID
-ownerid = 7438818824
+ownerid = 1717411093
 
 # Helper function to check if a user is an admin
 async def is_admin(user_id: int) -> bool:
