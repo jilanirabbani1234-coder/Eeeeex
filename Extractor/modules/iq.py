@@ -3,7 +3,6 @@ import datetime, pytz, re, aiofiles, subprocess, os, base64, io
 import aiohttp
 import aiofiles
 import os
-import server 
 from pyrogram import Client
 from pyrogram import filters
 from Extractor import app
@@ -83,7 +82,7 @@ async def handle_iq_logic(app, m):
         headers = {
             "Authorization": f"Bearer {token}",
         }
-        json_master2 = server.get("https://backend.studyiq.net/app-content-ws/api/v1/getAllPurchasedCourses?source=WEB", headers=headers)
+        json_master2 = requests.get("https://backend.studyiq.net/app-content-ws/api/v1/getAllPurchasedCourses?source=WEB", headers=headers)
         if not json_master2['data']:
             await editable.edit("You don't have any Paid & free batches available.")
             return
@@ -119,7 +118,7 @@ async def handle_iq_logic(app, m):
             edit_t = await m.reply_text("**Please wait url scrapping start**")
 
             if batch_id:
-                master3 = server.get(f"https://backend.studyiq.net/app-content-ws/v1/course/getDetails?courseId={batch_id}&languageId=", headers=headers)
+                master3 = requests.get(f"https://backend.studyiq.net/app-content-ws/v1/course/getDetails?courseId={batch_id}&languageId=", headers=headers)
                 bname = master3.get("courseTitle").replace(' || ', '').replace('|', '') 
                 all_urls = []
                 T_slug = "&".join([str(item.get("contentId")) for item in master3['data']])
@@ -132,7 +131,7 @@ async def handle_iq_logic(app, m):
                     except Exception as e:
                         print(f"Error occurred while editing topic name: {e}")
 
-                    parent_data = server.get(f"https://backend.studyiq.net/app-content-ws/v1/course/getDetails?courseId={batch_id}&languageId=&parentId={t_id}", headers=headers)
+                    parent_data = requests.get(f"https://backend.studyiq.net/app-content-ws/v1/course/getDetails?courseId={batch_id}&languageId=&parentId={t_id}", headers=headers)
                     subFolderOrderId = [item.get("subFolderOrderId") for item in parent_data['data']]
 
                     if all(sub_folder_order_id is None for sub_folder_order_id in subFolderOrderId):
@@ -164,7 +163,7 @@ async def handle_iq_logic(app, m):
 
                         for p_id in content_idx:
                             course_title = next((x.get('name') for x in parent_data['data'] if x.get('contentId') == int(p_id)), None)
-                            video = server.get(f"https://backend.studyiq.net/app-content-ws/v1/course/getDetails?courseId={batch_id}&languageId=&parentId={t_id}/{p_id}", headers=headers)
+                            video = requests.get(f"https://backend.studyiq.net/app-content-ws/v1/course/getDetails?courseId={batch_id}&languageId=&parentId={t_id}/{p_id}", headers=headers)
                             for video_item in video['data']:
                                 url = video_item.get('videoUrl')
                                 name = video_item.get('name')
