@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 #PREMIUM_LOGS = os.environ.get("PREMIUM_LOGS", "")
 #CHANNEL_ID = -1002589673708
 OWNER_ID = int(os.environ.get("OWNER_ID", "0"))
-MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://classplus:classplus12345@king.kb2x4lp.mongodb.net/?retryWrites=true&w=majority&appName=king")
+MONGO_URL = os.environ.get("MONGO_URI")
 
 # MongoDB setup
 mongo_client = AsyncIOMotorClient(MONGO_URL)
@@ -35,7 +35,7 @@ db = mongo_client["classplus_db"]
 collection = db["user_extractions"]
 
 # Constants
-txt_dump = -1002589673708
+txt_dump = -1003549344180
 #txt_dump = PREMIUM_LOGS
 appname = "Classplus"
 MAX_EXTRACTS_PER_DAY = 5
