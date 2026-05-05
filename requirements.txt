@@ -18,3 +18,5 @@ gunicorn
 apscheduler
 brotli
 python-dotenv
+dnspython
+pymongo
