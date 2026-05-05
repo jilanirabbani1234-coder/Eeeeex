@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 # Environment variables
 #PREMIUM_LOGS = os.environ.get("PREMIUM_LOGS", "")
 #CHANNEL_ID = -1002589673708
-OWNER_ID = int(os.environ.get("OWNER_ID", ""))
+OWNER_ID = int(os.environ.get("OWNER_ID", "0"))
 MONGO_URL = os.environ.get("MONGO_URL", "mongodb+srv://classplus:classplus12345@king.kb2x4lp.mongodb.net/?retryWrites=true&w=majority&appName=king")
 
 # MongoDB setup
