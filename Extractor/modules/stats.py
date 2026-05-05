@@ -14,7 +14,7 @@ ownerid = 1717411093  # Replace with your actual Telegram chat ID (integer)
 
 # MongoDB database instance (same as implied in stats module)
 from motor.motor_asyncio import AsyncIOMotorClient
-MONGO_URI = ""  # Replace with your MongoDB URI
+MONGO_URI = os.environ.get("MONGO_URI")  # Replace with your MongoDB URI
 client = AsyncIOMotorClient(MONGO_URI)
 db = client['king']  # Replace with your database name
 
