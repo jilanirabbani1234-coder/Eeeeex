@@ -29,6 +29,7 @@ async def main():
     await app.start()
     for module in ALL_MODULES:
         importlib.import_module("Extractor.modules." + module)
+        print(f"Loaded module: {module}")
     print("Bot is running...")
     await idle()
     await app.stop()
