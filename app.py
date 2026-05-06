@@ -19,21 +19,16 @@ def run_flask():
     flask_app.run(host='0.0.0.0', port=8080)
 
 async def main():
-    # Load all modules
     for module in ALL_MODULES:
         importlib.import_module("Extractor.modules." + module)
         print(f"Loaded module: {module}")
     
-    # Start cleanup scheduler
     scheduler = start_cleanup_scheduler()
-    
-    # Start Flask in separate thread
     Thread(target=run_flask, daemon=True).start()
     
     await app.start()
     print("Bot is running...")
     await idle()
-    await app.stop()
 
-if __name__ == "__main__":
-    asyncio.run(main())
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main())
