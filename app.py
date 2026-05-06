@@ -8,9 +8,6 @@ from Extractor import app
 from Extractor.modules import ALL_MODULES
 from myutils.cleanup import start_cleanup_scheduler
 
-# Start cleanup scheduler
-scheduler = start_cleanup_scheduler()
-
 # Flask app
 flask_app = Flask(__name__)
 
@@ -21,15 +18,19 @@ def hello_world():
 def run_flask():
     flask_app.run(host='0.0.0.0', port=8080)
 
-# Start Flask in separate thread
-Thread(target=run_flask).start()
-
-# Bot startup
 async def main():
-    await app.start()
+    # Load all modules
     for module in ALL_MODULES:
         importlib.import_module("Extractor.modules." + module)
         print(f"Loaded module: {module}")
+    
+    # Start cleanup scheduler
+    scheduler = start_cleanup_scheduler()
+    
+    # Start Flask in separate thread
+    Thread(target=run_flask, daemon=True).start()
+    
+    await app.start()
     print("Bot is running...")
     await idle()
     await app.stop()
