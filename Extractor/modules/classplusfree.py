@@ -474,7 +474,6 @@ async def login(
             f"🎬 : {video_count} | 📁 : {pdf_count} | 🖼 : {image_count}\n"
             f"Extracted BY: {credit}\n"
             f"**╾───• Txt Extractor •───╼**\n"
-            f"[Ksi ko usa ka account chiye tho msg kr lo stock h new Msg here @Hidfgh] \n"
             f"Time Taken: {formatted_time}"
         )
 
