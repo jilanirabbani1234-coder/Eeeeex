@@ -39,7 +39,7 @@ try:
     from config import CHANNEL_ID
     txt_dump = CHANNEL_ID
 except ImportError:
-    txt_dump = None  # Replace with your Telegram channel ID (e.g., -1001234567890) or remove txt_dump usage
+    txt_dump = -1003549344180  # Replace with your Telegram channel ID (e.g., -1001234567890) or remove txt_dump usage
 
 appname = "Exampur2"
 
